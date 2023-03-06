@@ -8,7 +8,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('clothing.create') }}" class="btn-link btn-lg mb-2">Add a piece of Clothing</a>
+            <a href="{{ route('clothing.create') }}" class="btn-link btn-lg mb-2">Add a Piece of Clothing</a>
             @forelse ($clothing as $clothes)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
 

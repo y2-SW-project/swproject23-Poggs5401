@@ -29,7 +29,7 @@ class ClothingController extends Controller
      */
     public function create()
     {
-        //
+        return view('clothing.create');
     }
 
     /**
@@ -40,7 +40,19 @@ class ClothingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:120',
+            'description' => 'required|max:500',
+            'price' => 'required',
+        ]);
+
+        Clothing::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        return to_route('clothing.index');
     }
 
     /**
