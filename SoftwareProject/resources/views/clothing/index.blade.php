@@ -11,7 +11,10 @@
             <a href="{{ route('clothing.create') }}" class="btn-link btn-lg mb-2">Add a Piece of Clothing</a>
             @forelse ($clothing as $clothes)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-
+                    <td rowspan="6">
+                        <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
+                        <img src="{{ asset('storage/images/' . $clothes->clothing_image) }}" width="150" />
+                    </td>
                     <h2 class="font-bold text-2xl">
                         <a href="{{ route('clothing.show', $clothes) }}">{{ $clothes->title }}</a>
                     </h2>
