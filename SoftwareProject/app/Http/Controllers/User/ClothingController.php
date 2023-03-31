@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use App\Models\Clothing;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+class ClothingController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $clothing = Clothing::paginate(10);
+
+        return view('user.clothing.index')->with('clothing', $clothing);
+    }
+
+    public function show(Clothing $clothing)
+    {
+        if (!Auth::id()) {
+            return abort(403);
+        }
+
+        //this function is used to get a book by the ID.
+        return view('user.clothing.show')->with('clothing', $clothing);
+    }
+
+}

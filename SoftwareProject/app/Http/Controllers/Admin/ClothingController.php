@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Clothing;
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ClothingController extends Controller
 {
@@ -18,9 +16,12 @@ class ClothingController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         $clothing = Clothing::paginate(10);
 
-        return view('clothing.index')->with('clothing', $clothing);
+        return view('admin.clothing.index')->with('clothing', $clothing);
     }
 
     /**
@@ -30,7 +31,10 @@ class ClothingController extends Controller
      */
     public function create()
     {
-        return view('clothing.create');
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        return view('admin.clothing.create');
     }
 
     /**
@@ -41,6 +45,9 @@ class ClothingController extends Controller
      */
     public function store(Request $request)
     {
+
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
 
         $clothing_image = $request->file('clothing_image');
         $extension = $clothing_image->getClientOriginalExtension();
@@ -64,7 +71,7 @@ class ClothingController extends Controller
             'clothing_image' => $filename
         ]);
 
-        return to_route('clothing.index');
+        return to_route('admin.clothing.index');
     }
 
     /**
@@ -75,12 +82,16 @@ class ClothingController extends Controller
      */
     public function show(Clothing $clothing)
     {
+
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         if (!Auth::id()) {
             return abort(403);
         }
 
         //this function is used to get a book by the ID.
-        return view('clothing.show')->with('clothing', $clothing);
+        return view('admin.clothing.show')->with('clothing', $clothing);
     }
 
     /**
@@ -91,7 +102,11 @@ class ClothingController extends Controller
      */
     public function edit(Clothing $clothing)
     {
-        return view('clothing.edit')->with('clothing', $clothing);
+
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        return view('admin.clothing.edit')->with('clothing', $clothing);
     }
 
     /**
@@ -104,6 +119,8 @@ class ClothingController extends Controller
     public function update(Request $request, Clothing $clothing)
     {
 
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
 
         $request->validate([
             'title' => 'required|max:120',
@@ -125,7 +142,7 @@ class ClothingController extends Controller
             'clothing_image' => $filename
         ]);
 
-        return to_route('clothing.show', $clothing)->with('success', 'Clothing Updated Successfully!');
+        return to_route('admin.clothing.show', $clothing)->with('success', 'Clothing Updated Successfully!');
     }
 
     /**
@@ -134,8 +151,14 @@ class ClothingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Clothing $clothing)
     {
-        //
+
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $clothing->delete();
+
+        return to_route('admin.clothing.index', $clothing)->with('success', 'Clothing Deleted Successfully!');
     }
 }

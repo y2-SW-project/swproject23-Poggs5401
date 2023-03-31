@@ -15,8 +15,8 @@
 
             <div class="flex">
 
-                <a href="{{ route('clothing.edit', $clothing) }}" class="btn-link ml-auto">Edit</a>
-                <form action="{{ route('clothing.destroy', $clothing) }}" method="post">
+                <a href="{{ route('admin.clothing.edit', $clothing) }}" class="btn-link ml-auto">Edit</a>
+                <form action="{{ route('admin.clothing.destroy', $clothing) }}" method="post">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete?')">Delete </button>

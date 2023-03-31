@@ -34,7 +34,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('clothing.index')">
+                        <x-dropdown-link :href="route('home.index')">
                             {{ __('Clothing') }}
                         </x-dropdown-link>
 
@@ -67,7 +67,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('clothing.index')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('home.index')" :active="request()->routeIs('dashboard')">
                 {{ __('Clothing') }}
             </x-responsive-nav-link>
         </div>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('clothing.index')">
+                <x-responsive-nav-link :href="route('home.index')">
                     {{ __('Clothing') }}
                 </x-responsive-nav-link>
 

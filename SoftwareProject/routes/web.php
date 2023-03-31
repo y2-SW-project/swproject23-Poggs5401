@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ClothingController;
+use App\Http\Controllers\Admin\ClothingController as AdminClothingController;
+use App\Http\Controllers\User\ClothingController as UserClothingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,10 @@ Route::get('/dashboard', function () {
 
 Route::resource('/clothing', ClothingController::class)->middleware(['auth']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+
+Route::resource('/admin/clothing', AdminClothingController::class)->middleware(['auth'])->names('admin.clothing');
+
+Route::resource('/user/clothing', UserClothingController::class)->middleware(['auth'])->names('user.clothing')->only(['index', 'show']);
