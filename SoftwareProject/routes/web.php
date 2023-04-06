@@ -30,6 +30,7 @@ Route::resource('/clothing', ClothingController::class)->middleware(['auth']);
 require __DIR__ . '/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/home/publishers', [App\Http\Controllers\HomeController::class, 'publisherIndex'])->name('home.publisher.index');
 
 
 

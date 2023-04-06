@@ -39,5 +39,21 @@ class HomeController extends Controller
         }
         return redirect()->route($home);
     }
+
+    public function publisherIndex(Request $request)
+    {
+
+        $user = Auth::user();
+        $home = 'home';
+
+        if($user->hasRole('admin')){
+            $home = 'admin.categories.index';
+        }
+        else if ($user->hasRole('user')){
+            $home = 'user.categories.index';
+        }
+        return redirect()->route($home);
+    }
+
 }
 
