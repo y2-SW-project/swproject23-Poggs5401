@@ -45,6 +45,17 @@
                     field="clothing_image"
                     :value="@old('clothing_image', $clothing->clothing_image)">
                 </x-file-input>
+
+                <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category_id">
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
+                                {{$category->name}}
+                            </option>
+                            @endforeach
+                        </select>
+                        </div>
                <x-primary-button class="mt-6">Update This Piece of Clothing</x-primary-button>
                 </form>
             </div>

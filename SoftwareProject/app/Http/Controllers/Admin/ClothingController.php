@@ -112,7 +112,7 @@ class ClothingController extends Controller
         $user->authorizeRoles('admin');
 
         $categories = Category::all();
-        return view('admin.clothing.create')->with('categories',$categories);
+        return view('admin.clothing.edit')->with('categories',$categories)->with( 'clothing', $clothing);
     }
 
     /**

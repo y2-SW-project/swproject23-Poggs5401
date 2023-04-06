@@ -31,6 +31,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
-Route::resource('/admin/clothing', AdminClothingController::class)->middleware(['auth'])->names('admin.clothing');
 
+
+Route::resource('/admin/clothing', AdminClothingController::class)->middleware(['auth'])->names('admin.clothing');
 Route::resource('/user/clothing', UserClothingController::class)->middleware(['auth'])->names('user.clothing')->only(['index', 'show']);
