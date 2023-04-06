@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Admin\ClothingController as AdminClothingController;
 use App\Http\Controllers\User\ClothingController as UserClothingController;
+
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\User\CategoryController as UserCategoryController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +34,12 @@ Route::resource('/clothing', ClothingController::class)->middleware(['auth']);
 require __DIR__ . '/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
-Route::get('/home/publishers', [App\Http\Controllers\HomeController::class, 'publisherIndex'])->name('home.publisher.index');
+Route::get('/home/categories', [App\Http\Controllers\HomeController::class, 'categoryIndex'])->name('home.category.index');
 
 
 
 Route::resource('/admin/clothing', AdminClothingController::class)->middleware(['auth'])->names('admin.clothing');
 Route::resource('/user/clothing', UserClothingController::class)->middleware(['auth'])->names('user.clothing')->only(['index', 'show']);
+
+Route::resource('/admin/categories', AdminCategoryController::class)->middleware(['auth'])->names('admin.categories');
+Route::resource('/user/categories', UserCategoryController::class)->middleware(['auth'])->names('user.categories')->only(['index', 'show']);

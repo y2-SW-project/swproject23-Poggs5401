@@ -40,7 +40,7 @@ class HomeController extends Controller
         return redirect()->route($home);
     }
 
-    public function publisherIndex(Request $request)
+    public function categoryIndex(Request $request)
     {
 
         $user = Auth::user();

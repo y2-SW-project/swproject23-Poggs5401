@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +16,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        $category = Category::with('category')->get();
+
+        return view('user.categories.index')->with('category', $category);
     }
 
     /**
@@ -44,9 +51,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+
+        if(!Auth::id()) {
+           return abort(403);
+         }
+
+        return view('user.categories.show')->with('category', $category);
     }
 
     /**
