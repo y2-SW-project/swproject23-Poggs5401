@@ -35,16 +35,16 @@
                             <td>{{ $clothing->title }}</td>
                         </tr>
                         <tr>
-                            <td class="font-bold ">Author  </td>
+                            <td class="font-bold ">Category </td>
+                            <td>{{ $clothing->category->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold ">Price  </td>
                             <td>{{ $clothing->price }}</td>
                         </tr>
                         <tr>
                             <td class="font-bold">Description </td>
                             <td>{{ $clothing->description }}</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold ">Category </td>
-                            <td>{{ $clothing->category }}</td>
                         </tr>
                     </tbody>
                 </table>

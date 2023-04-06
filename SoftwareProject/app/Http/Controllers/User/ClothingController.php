@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clothing;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class ClothingController extends Controller
      */
     public function index()
     {
-        $clothing = Clothing::paginate(10);
+        // $clothing = Clothing::paginate(10);
+        $clothing = Clothing::with('category')->get();
 
         return view('user.clothing.index')->with('clothing', $clothing);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clothing;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class ClothingController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        $clothing = Clothing::paginate(10);
+        // $clothing = Clothing::paginate(10);
+        $clothing = Clothing::with('category')->get();
 
         return view('admin.clothing.index')->with('clothing', $clothing);
     }
@@ -34,7 +36,8 @@ class ClothingController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        return view('admin.clothing.create');
+        $categories = Category::all();
+        return view('admin.clothing.create')->with('categories',$categories);
     }
 
     /**
@@ -61,14 +64,16 @@ class ClothingController extends Controller
             'title' => 'required|max:120',
             'description' => 'required|max:500',
             'price' => 'required',
-            'clothing_image' => 'file|image'
+            'clothing_image' => 'file|image',
+            'category_id' => 'required'
         ]);
 
         Clothing::create([
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'clothing_image' => $filename
+            'clothing_image' => $filename,
+            'category_id' => $request->category_id
         ]);
 
         return to_route('admin.clothing.index');
@@ -106,7 +111,8 @@ class ClothingController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        return view('admin.clothing.edit')->with('clothing', $clothing);
+        $categories = Category::all();
+        return view('admin.clothing.create')->with('categories',$categories);
     }
 
     /**
@@ -126,7 +132,8 @@ class ClothingController extends Controller
             'title' => 'required|max:120',
             'description' => 'required|max:500',
             'price' => 'required',
-            'clothing_image' => 'file|image'
+            'clothing_image' => 'file|image',
+            'category_id' => 'required'
         ]);
 
         $clothing_image = $request->file('clothing_image');
@@ -139,7 +146,8 @@ class ClothingController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'clothing_image' => $filename
+            'clothing_image' => $filename,
+            'category_id' => $request->category_id
         ]);
 
         return to_route('admin.clothing.show', $clothing)->with('success', 'Clothing Updated Successfully!');

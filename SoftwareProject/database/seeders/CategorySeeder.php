@@ -15,9 +15,29 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-        ->times(3)
-        // ->hasClothing(5)
-        ->create();
+        $category = new Category();
+        $category->name = 'Hoodies';
+        $category->description = 'Sweatshirt with a hood attached that may also have a kangaroo pocket or full zipper.';
+        $category->save();
+
+        $category = new Category();
+        $category->name = 'T-Shirts';
+        $category->description = 'Shirts with short sleeves, featuring a round or V-shaped neckline.';
+        $category->save();
+
+        $category = new Category();
+        $category->name = 'Jackets';
+        $category->description = 'Outerwear designed for layering and/or keeping warm, often featuring multiple pockets and a full length zip.';
+        $category->save();
+
+        $category = new Category();
+        $category->name = 'Trousers';
+        $category->description = 'Clothing worn from the waist to anywhere between the knees and the ankles, covering both legs separately.';
+        $category->save();
+
+        $category = new Category();
+        $category->name = 'Shoes';
+        $category->description = 'Footwear that covers the foot and protects it with a sole.';
+        $category->save();
     }
 }

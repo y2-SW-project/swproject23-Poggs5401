@@ -21,14 +21,6 @@
                     :value="@old('title', $clothing->title)">
                    ></x-text-input>
 
-                <x-text-input
-                    type="text"
-                    name="category"
-                    field="category"
-                    placeholder="Category..."
-                    class="w-full mt-6"
-                    :value="@old('category', $clothing->category)"></x-text-input>
-
                 <x-textarea
                     name="description"
                     rows="10"
@@ -50,7 +42,7 @@
                     name="clothing_image"
                     placeholder="Clothing"
                     class="w-full mt-6"
-                    field="clothing_image">
+                    field="clothing_image"
                     :value="@old('clothing_image', $clothing->clothing_image)">
                 </x-file-input>
                <x-primary-button class="mt-6">Update This Piece of Clothing</x-primary-button>
