@@ -21,8 +21,7 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <table class="table table-hover">
                     <tbody>
-
-                        <tr>
+                    <tr>
                             <td class="font-bold ">ID </td>
                             <td>{{ $category->id }}</td>
                         </tr>
@@ -33,6 +32,11 @@
                         <tr>
                             <td class="font-bold ">Description </td>
                             <td>{{ $category->description }}</td>
+                        </tr>
+                        <tr>
+                        <td rowspan="6">
+                            <img src="{{asset('storage/images/' . $category->category_image) }}" width="150" />
+                        </td>
                         </tr>
 
 

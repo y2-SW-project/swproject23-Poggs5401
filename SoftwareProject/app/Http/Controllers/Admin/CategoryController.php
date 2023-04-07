@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         $category = Category::all();
 
-        return view('admin.category.index')->with('category', $category);
+        return view('admin.category.index')->with('categories', $category);
     }
 
     /**
@@ -31,7 +31,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $category = Category::all();
+
+        return view('admin.category.create')->with('categories', $category);
     }
 
     /**
@@ -42,7 +47,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $category_image = $request->file('category_image');
+        $extension = $category_image->getClientOriginalExtension();
+        // the filename needs to be unique, I use title and add the date to guarantee a unique filename, ISBN would be better here.
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
+
+        // store the file $book_image in /public/images, and name it $filename
+        $path = $category_image->storeAs('public/images', $filename);
+
+        $request->validate([
+            'name' => 'required|max:120',
+            'description' => 'required|max:500',
+            'category_image' => 'file|image',
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'category_image' => $filename,
+        ]);
+
+        return to_route('admin.category.index');
     }
 
     /**
@@ -60,7 +88,7 @@ class CategoryController extends Controller
            return abort(403);
          }
 
-        return view('admin.categories.show')->with('category', $category);
+        return view('admin.category.show')->with('category', $category);
     }
 
     /**
@@ -69,9 +97,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $categories)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        // $categories = Category::all();
+        return view('admin.category.edit')->with('categories',$categories);
     }
 
     /**
@@ -81,9 +113,30 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $categories)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $request->validate([
+            'name' => 'required|max:120',
+            'description' => 'required|max:500',
+            'category_image' => 'file|image',
+        ]);
+
+        $category_image = $request->file('category_image');
+        $extension = $category_image->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
+
+        $path = $category_image->storeAs('public/images', $filename);
+
+        $categories->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'category_image' => $filename,
+        ]);
+
+        return to_route('admin.category.show', $categories)->with('success', 'Category Updated Successfully!');
     }
 
     /**
@@ -92,8 +145,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $categories)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $categories->delete();
+
+        return to_route('admin.category.index', $categories)->with('success', 'Category Deleted Successfully!');
     }
 }

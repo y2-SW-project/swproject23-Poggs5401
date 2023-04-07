@@ -1,15 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Clothing') }}
+            {{ __('Edit Category') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <!-- The route is books.update, this route defined in web.php calls BookController:update() function -->
-                <form action="{{ route('admin.clothing.update', $clothing) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.category.update', $category) }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <x-text-input
@@ -18,7 +17,7 @@
                     field="title"
                     placeholder="Title..."
                     class="w-full"
-                    :value="@old('title', $clothing->title)">
+                    :value="@old('title', $category->title)">
                    ></x-text-input>
 
                 <x-textarea
@@ -27,36 +26,17 @@
                     field="description"
                     placeholder="Description..."
                     class="w-full mt-6"
-                    :value="@old('description', $clothing->description)"></x-textarea>
-
-                <x-text-input
-                    type="text"
-                    name="price"
-                    field="price"
-                    placeholder="Price..."
-                    class="w-full mt-6"
-                    :value="@old('price',$clothing->price)"></x-text-input>
+                    :value="@old('description', $category->description)"></x-textarea>
 
                 <x-file-input
                     type="file"
-                    name="clothing_image"
-                    placeholder="Clothing"
+                    name="category_image"
+                    placeholder="Category Image"
                     class="w-full mt-6"
-                    field="clothing_image"
-                    :value="@old('clothing_image', $clothing->clothing_image)">
+                    field="category_image"
+                    :value="@old('category_image', $category->category_image)">
                 </x-file-input>
-
-                <div class="form-group">
-                        <label for="category">Category</label>
-                        <select name="category_id">
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
-                                {{$category->name}}
-                            </option>
-                            @endforeach
-                        </select>
-                        </div>
-               <x-primary-button class="mt-6">Update This Piece of Clothing</x-primary-button>
+               <x-primary-button class="mt-6">Update This Category</x-primary-button>
                 </form>
             </div>
         </div>
