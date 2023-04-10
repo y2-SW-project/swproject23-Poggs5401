@@ -11,7 +11,7 @@
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
-            @forelse ($categories as $category)
+            @forelse ($category as $category)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
                     <a href="{{ route('user.category.show', $category) }}"> <strong> Category ID </strong> {{ $category->id }}</a>

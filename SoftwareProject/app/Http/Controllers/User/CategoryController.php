@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -19,9 +19,9 @@ class CategoryController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('user');
 
-        $category = Category::with('category')->get();
+        $category = Category::all();
 
-        return view('user.categories.index')->with('category', $category);
+        return view('user.category.index')->with('category', $category);
     }
 
     /**
@@ -60,7 +60,7 @@ class CategoryController extends Controller
            return abort(403);
          }
 
-        return view('user.categories.show')->with('category', $category);
+        return view('user.category.show')->with('category', $category);
     }
 
     /**
