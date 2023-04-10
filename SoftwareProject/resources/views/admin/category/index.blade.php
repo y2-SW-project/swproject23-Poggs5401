@@ -12,19 +12,18 @@
                 {{ session('success') }}
             </x-alert-success>
             <a href="{{ route('admin.category.create') }}" class="btn-link btn-lg mb-2">Add a Category</a>
-            @forelse ($categories as $category)
+            @forelse ($category as $category)
+
+            <a href="{{ route('admin.category.show', $category) }}">
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                    <h2 class="font-bold text-2xl">
-                    <a href="{{ route('admin.category.show', $category) }}"> <strong> Category ID </strong> {{ $category->id }}</a>
+                    <p class="font-bold text-2xl">
+                    <h2> <strong> Category Title </strong>
+                        {{$category->name}}
                     </h2>
-                    <p class="mt-2">
-
-                        <h3> <strong> Category Title </strong>
-                        {{$category->name}} </h3>
-
                     </p>
-
                 </div>
+            </a>
+
             @empty
             <p>No Categories Found</p>
             @endforelse

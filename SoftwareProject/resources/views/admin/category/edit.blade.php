@@ -13,11 +13,11 @@
                     @csrf
                     <x-text-input
                     type="text"
-                    name="title"
-                    field="title"
-                    placeholder="Title..."
+                    name="name"
+                    field="name"
+                    placeholder="Name..."
                     class="w-full"
-                    :value="@old('title', $category->title)">
+                    :value="@old('name', $category->name)">
                    ></x-text-input>
 
                 <x-textarea

@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         $category = Category::all();
 
-        return view('admin.category.index')->with('categories', $category);
+        return view('admin.category.index')->with('category', $category);
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         $category = Category::all();
 
-        return view('admin.category.create')->with('categories', $category);
+        return view('admin.category.create')->with('category', $category);
     }
 
     /**
@@ -97,13 +97,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $categories)
+    public function edit(Category $category)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
         // $categories = Category::all();
-        return view('admin.category.edit')->with('categories',$categories);
+        return view('admin.category.edit')->with('category',$category);
     }
 
     /**
@@ -113,7 +113,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $categories)
+    public function update(Request $request, Category $category)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
@@ -130,13 +130,13 @@ class CategoryController extends Controller
 
         $path = $category_image->storeAs('public/images', $filename);
 
-        $categories->update([
+        $category->update([
             'name' => $request->name,
             'description' => $request->description,
             'category_image' => $filename,
         ]);
 
-        return to_route('admin.category.show', $categories)->with('success', 'Category Updated Successfully!');
+        return to_route('admin.category.show', $category)->with('success', 'Category Updated Successfully!');
     }
 
     /**
@@ -145,13 +145,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $categories)
+    public function destroy(Category $category)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        $categories->delete();
+        $category->delete();
 
-        return to_route('admin.category.index', $categories)->with('success', 'Category Deleted Successfully!');
+        return to_route('admin.category.index', $category)->with('success', 'Category Deleted Successfully!');
     }
 }
