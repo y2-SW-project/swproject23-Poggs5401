@@ -14,4 +14,9 @@ class Clothing extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function colour()
+    {
+        return $this->belongstoMany(Colour::class)->withTimestamps();
+    }
 }
