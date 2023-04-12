@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Clothing;
 use App\Models\Category;
+use App\Models\Colour;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,9 @@ class ClothingController extends Controller
         $user->authorizeRoles('admin');
 
         $categories = Category::all();
-        return view('admin.clothing.create')->with('categories',$categories);
+        $colour = Colour::all();
+
+        return view('admin.clothing.create')->with('categories',$categories)->with('colour', $colour);;
     }
 
     /**

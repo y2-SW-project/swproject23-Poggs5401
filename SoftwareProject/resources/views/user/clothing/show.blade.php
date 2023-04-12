@@ -23,6 +23,12 @@
                             <td class="font-bold ">Title </td>
                             <td>{{ $clothing->title }}</td>
                         </tr>
+                        @foreach ($clothing->colour as $colour)
+                            <tr>
+                                <td class="font-bold ">Colour</td>
+                                <td> {{$colour->title }}</td>
+                            </tr>
+                        @endforeach
                         <tr>
                             <td class="font-bold ">Category </td>
                             <td>{{ $clothing->category->name }}</td>

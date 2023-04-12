@@ -30,6 +30,13 @@
                             @endforeach
                         </select>
                     
+                        <div class="form-group">
+                        <label for="colour"> <strong> Colours</strong> <br> </label>
+                        @foreach ($colour as $colour)
+                            <input type="checkbox", value="{{$colour->id}}" name="colour[]">
+                           {{$colour->title}}
+                        @endforeach
+                    </div>
 
                     <x-primary-button class="mt-6">Save this Piece of Clothing</x-primary-button>
                 </form>

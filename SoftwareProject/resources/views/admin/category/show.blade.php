@@ -38,8 +38,6 @@
                             <img src="{{asset('storage/images/' . $category->category_image) }}" width="150" />
                         </td>
                         </tr>
-
-
                     </tbody>
                 </table>
             </div>
