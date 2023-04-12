@@ -18,7 +18,7 @@
                     </h2>
                     <p class="mt-2">
 
-                        <h3> <strong> Category Title </strong>
+                        <h3> <strong> Category Title -</strong>
                         {{$category->name}} </h3>
 
                     </p>

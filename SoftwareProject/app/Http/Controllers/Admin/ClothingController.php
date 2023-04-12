@@ -21,7 +21,7 @@ class ClothingController extends Controller
         $user->authorizeRoles('admin');
 
         // $clothing = Clothing::paginate(10);
-        $clothing = Clothing::with('category')->get();
+        $clothing = Clothing::with('category')->with('colour')->get();
 
         return view('admin.clothing.index')->with('clothing', $clothing);
     }

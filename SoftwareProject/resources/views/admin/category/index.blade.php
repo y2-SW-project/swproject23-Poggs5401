@@ -17,10 +17,10 @@
             <a href="{{ route('admin.category.show', $category) }}">
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <p class="font-bold text-2xl">
-                    <h2> <strong> Category Title </strong>
+                    <h2> <strong> Category Title -</strong>
                         {{$category->name}}
                     </h2>
-                    </p>
+                    </p>    
                 </div>
             </a>
 

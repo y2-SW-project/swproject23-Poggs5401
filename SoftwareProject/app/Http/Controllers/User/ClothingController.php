@@ -18,7 +18,7 @@ class ClothingController extends Controller
     public function index()
     {
         // $clothing = Clothing::paginate(10);
-        $clothing = Clothing::with('category')->get();
+        $clothing = Clothing::with('category')->with('colour')->get();
 
         return view('user.clothing.index')->with('clothing', $clothing);
     }
