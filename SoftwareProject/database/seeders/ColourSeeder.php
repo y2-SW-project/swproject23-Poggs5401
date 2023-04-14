@@ -23,7 +23,7 @@ class ColourSeeder extends Seeder
         foreach(Clothing::all() as $clothing)
         {
             $colour = Colour::inRandomOrder()->take(rand(1,3))->pluck('id');
-            $clothing->authors()->attach($colour);
+            $clothing->colour()->attach($colour);
         }
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', 6,2);
             $table->string('clothing_image');
             $table->unsignedBigInteger('category_id');
+            $table->string('colour');
             $table->timestamps();
         });
     }
