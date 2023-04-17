@@ -69,7 +69,7 @@ class ClothingController extends Controller
             'price' => 'required',
             'clothing_image' => 'file|image',
             'category_id' => 'required',
-            'colour' =>['required' , 'exists:colour,id']
+            'colour' =>['required' , 'exists:colours,id']
         ]);
 
         $clothing = Clothing::create([
@@ -141,7 +141,6 @@ class ClothingController extends Controller
             'price' => 'required',
             'clothing_image' => 'file|image',
             'category_id' => 'required',
-            'colour' =>['required' , 'exists:colour,id']
         ]);
 
         $clothing_image = $request->file('clothing_image');
@@ -156,7 +155,6 @@ class ClothingController extends Controller
             'price' => $request->price,
             'clothing_image' => $filename,
             'category_id' => $request->category_id,
-            'colour' => $request->colour
         ]);
 
         return to_route('admin.clothing.show', $clothing)->with('success', 'Clothing Updated Successfully!');
