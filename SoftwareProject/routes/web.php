@@ -43,3 +43,7 @@ Route::resource('/user/clothing', UserClothingController::class)->middleware(['a
 
 Route::resource('/admin/category', AdminCategoryController::class)->middleware(['auth'])->names('admin.category');
 Route::resource('/user/category', UserCategoryController::class)->middleware(['auth'])->names('user.category')->only(['index', 'show']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
