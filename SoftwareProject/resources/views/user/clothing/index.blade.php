@@ -13,7 +13,6 @@
             @forelse ($clothing as $clothes)
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <td rowspan="6">
-                    <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
                     <img src="{{ asset('storage/images/' . $clothes->clothing_image) }}" width="150" />
                 </td>
                 <h2 class="font-bold text-2xl">

@@ -29,7 +29,6 @@ class ClothingController extends Controller
             return abort(403);
         }
 
-        //this function is used to get a book by the ID.
         return view('user.clothing.show')->with('clothing', $clothing);
     }
 

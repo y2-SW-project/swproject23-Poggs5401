@@ -52,10 +52,8 @@ class CategoryController extends Controller
 
         $category_image = $request->file('category_image');
         $extension = $category_image->getClientOriginalExtension();
-        // the filename needs to be unique, I use title and add the date to guarantee a unique filename, ISBN would be better here.
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
 
-        // store the file $book_image in /public/images, and name it $filename
         $path = $category_image->storeAs('public/images', $filename);
 
         $request->validate([

@@ -57,10 +57,8 @@ class ClothingController extends Controller
 
         $clothing_image = $request->file('clothing_image');
         $extension = $clothing_image->getClientOriginalExtension();
-        // the filename needs to be unique, I use title and add the date to guarantee a unique filename, ISBN would be better here.
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
 
-        // store the file $book_image in /public/images, and name it $filename
         $path = $clothing_image->storeAs('public/images', $filename);
 
         $request->validate([
@@ -102,7 +100,6 @@ class ClothingController extends Controller
             return abort(403);
         }
 
-        //this function is used to get a book by the ID.
         return view('admin.clothing.show')->with('clothing', $clothing);
     }
 

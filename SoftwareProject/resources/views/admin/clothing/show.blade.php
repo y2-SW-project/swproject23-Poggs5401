@@ -9,8 +9,6 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!--alert-success is a component which I created using php artisan make:component alert-success
-            have a look at the code in views/components/alert-success.blade.php -->
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
@@ -28,7 +26,6 @@
                     <tbody>
                         <tr>
                             <td rowspan="6">
-                                <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
                                 <img src="{{asset('storage/images/' . $clothing->clothing_image) }}" width="150" />
                             </td>
                         </tr>
